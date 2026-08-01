@@ -90,10 +90,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDrawer }) => {
             ))}
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 text-[10px] px-2.5 py-1 rounded-full border border-glass bg-glass ml-1">
+          {/* <div className="hidden sm:flex items-center gap-1.5 text-[10px] px-2.5 py-1 rounded-full border border-glass bg-glass ml-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-status-pulse" />
-            <span className="font-mono uppercase tracking-wider text-secondary">Operational</span>
-          </div>
+            <span className="font-mono uppercase tracking-wider text-secondary"></span>
+          </div> */}
 
           <button
             type="button"

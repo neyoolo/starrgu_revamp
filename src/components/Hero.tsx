@@ -78,8 +78,8 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
           {/* Glowing Badge */}
           <div className="badge-glow" aria-hidden="false">
             <div className="badge-glow-inner">
-              <span className="badge-indicator" aria-hidden="true">⬡</span>
-              <span className="badge-text">Global AI & Media Technology Group</span>
+              <span className="badge-indicator" aria-hidden="true"></span>
+              <span className="badge-text"></span>
             </div>
           </div>
 
@@ -135,7 +135,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
           </motion.div>
 
           {/* Focus Areas */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.95, duration: 0.8 }}
@@ -152,7 +152,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
                 {area}
               </span>
             ))}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
 
         {/* Right: Brand Media Stack Column */}
@@ -188,7 +188,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
             </div>
 
             {/* Overlapping Floating Images */}
-            <div className="absolute left-6 right-6 bottom-6 grid grid-cols-2 gap-3 z-10 pointer-events-none" style={{ transform: 'translateZ(20px)' }}>
+            {/* <div className="absolute left-6 right-6 bottom-6 grid grid-cols-2 gap-3 z-10 pointer-events-none" style={{ transform: 'translateZ(20px)' }}>
               <img
                 src={IMAGES.starrgu21}
                 alt="Creator OS interface preview"
@@ -199,7 +199,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
                 alt="Broadcasting dashboard detail"
                 className="w-full aspect-[1.25] object-cover rounded-xl border border-white/20 shadow-2xl shadow-black/80"
               />
-            </div>
+            </div> */}
 
             {/* Floating Info Chips */}
             <div
