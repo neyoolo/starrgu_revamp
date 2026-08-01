@@ -76,12 +76,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreClick }) => {
           className="flex flex-col gap-6 lg:col-span-7 text-left items-start"
         >
           {/* Glowing Badge */}
-          <div className="badge-glow" aria-hidden="false">
+          {/* <div className="badge-glow" aria-hidden="false">
             <div className="badge-glow-inner">
               <span className="badge-indicator" aria-hidden="true"></span>
               <span className="badge-text"></span>
             </div>
-          </div>
+          </div> */}
 
           {/* Animated Headline */}
           <motion.h1

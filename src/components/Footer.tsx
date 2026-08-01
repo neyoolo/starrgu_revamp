@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe, MessageCircle, Send } from 'lucide-react';
+import { Code2, ExternalLink, MessageCircle } from 'lucide-react';
 import { LOGO } from '../lib/assets';
 import type { LegalPage } from './LegalModal';
 
@@ -17,10 +17,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDrawer, onOpenLegal }) => 
           <p className="text-xs text-white/40 leading-relaxed">
             AI Infrastructure & Media Technology.<br />Registered in England & Wales, London, United Kingdom.
           </p>
-          <div className="flex items-center gap-1.5 text-[10px] text-white/40 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] self-start mt-1">
+          {/* <div className="flex items-center gap-1.5 text-[10px] text-white/40 px-2.5 py-1 rounded-full border border-white/5 bg-white/[0.02] self-start mt-1">
             <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-status-pulse" />
             All systems operational
-          </div>
+          </div> */}
         </div>
 
         <div>
@@ -95,32 +95,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDrawer, onOpenLegal }) => 
           © 2026 Starrgu Ltd. All rights reserved.
         </p>
         <div className="flex gap-4">
-          <a 
-            href="https://linkedin.com/company/starrgu" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white/30 hover:text-white transition-colors duration-200" 
-            aria-label="LinkedIn"
-          >
-            <Globe className="w-4 h-4" />
+          <a href="https://linkedin.com/company/starrgu" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+            <ExternalLink className="w-4 h-4" />
           </a>
-          <a 
-            href="https://twitter.com/starrgu" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white/30 hover:text-white transition-colors duration-200" 
-            aria-label="Twitter"
-          >
-            <Send className="w-4 h-4" />
-          </a>
-          <a 
-            href="https://facebook.com/starrgu" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-white/30 hover:text-white transition-colors duration-200" 
-            aria-label="Facebook"
-          >
+          <a href="mailto:info@starrgu.com" className="text-white/30 hover:text-white transition-colors duration-200" aria-label="Email">
             <MessageCircle className="w-4 h-4" />
+          </a>
+          <a href="https://github.com/starrgu" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors duration-200" aria-label="GitHub">
+            <Code2 className="w-4 h-4" />
           </a>
         </div>
       </div>
