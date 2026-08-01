@@ -8,7 +8,7 @@ export const TechnicalSection: React.FC = () => {
   // Concurrency counter
   const concRef = useRef<HTMLDivElement>(null);
   const isConcVisible = useInView(concRef, { once: true, amount: 0.3 });
-  const [concurrency, setConcurrency] = useState(0);
+  const [, setConcurrency] = useState(0);
 
   useEffect(() => {
     if (!isConcVisible || activeTab !== 'core') return;
@@ -25,7 +25,7 @@ export const TechnicalSection: React.FC = () => {
   }, [isConcVisible, activeTab]);
 
   // Microservices counter
-  const [svcCount, setSvcCount] = useState(0);
+  const [, setSvcCount] = useState(0);
   const svcRef = useRef<HTMLDivElement>(null);
   const isSvcVisible = useInView(svcRef, { once: true, amount: 0.3 });
 
@@ -66,16 +66,14 @@ export const TechnicalSection: React.FC = () => {
     { icon: Cpu, title: 'AI-Assisted Moderation & Safety Systems' },
   ];
 
-  const svcs = ['Auth','API GW','Model Serve','Prompt Eng','Media Enc','CDN Route','Stream Mux','DRM Mgr','Analytics','Billing','Search','Queue','Cache','Config','Health','Log Agg','Metrics','Trace','Notify','Storage','Rate Limit','Circuit','DNS','TLS','Load Bal','Sched','Pipeline','Audit','Key Mgr','Policy','Fairness','Draw Eng','Reputation','Crawler','Filter','Asset','Thumb','Transcode','AB Test','Feature','Deploy','Rollback','Vault','Node','Mesh','Edge','Cold Start','WAF'];
-
   return (
     <section className="relative z-10 px-6 py-20 max-w-7xl mx-auto" id="infrastructure">
       {/* Header */}
       <div className="text-center mb-12">
-        <p className="text-xs font-mono font-semibold tracking-[0.2em] text-brand-aqua uppercase mb-3">Defensibility & System Architecture</p>
-        <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-white mb-4">Vertical Integration Creates Structural Defensibility.</h2>
+        <p className="text-xs font-mono font-semibold tracking-[0.2em] text-brand-aqua uppercase mb-3">INFASTRUCTURE</p>
+        <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-white mb-4">The Starrgu Infrastructure Model.</h2>
         <p className="text-base text-white/70 max-w-xl mx-auto leading-relaxed">
-          Unlike single-layer platforms, Starrgu operates across intelligence, distribution, monetization, and intellectual property — controlling the full digital value chain.
+          Starrgu is built on the principle that infrastructure ownership creates long-term defensibility. We do not operate standalone applications, we engineer foundational systems.
         </p>
       </div>
 
@@ -85,37 +83,38 @@ export const TechnicalSection: React.FC = () => {
           onClick={() => setActiveTab('compare')}
           className={`text-sm px-5 py-3 border-b-2 transition-all duration-300 font-medium ${activeTab === 'compare' ? 'text-white border-brand-blue' : 'text-white/50 border-transparent hover:text-white/80'}`}
         >
-          Architecture Comparison
+          Infastructure 
         </button>
-        <button
+        { <button
           onClick={() => setActiveTab('core')}
           className={`text-sm px-5 py-3 border-b-2 transition-all duration-300 font-medium ${activeTab === 'core' ? 'text-white border-brand-blue' : 'text-white/50 border-transparent hover:text-white/80'}`}
         >
           The Starrgu Core
-        </button>
+        </button> }
       </div>
 
-      {/* TAB: Compare */}
+      {/* TAB:  */}
       {activeTab === 'compare' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Fragmented */}
           <motion.div variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card">
             <div className="flex items-center gap-2 mb-6">
               <span className="w-2 h-2 rounded-full bg-[#ef4444] shadow-[0_0_10px_rgba(239,68,68,0.45)]" />
-              <h3 className="text-sm font-semibold text-white">Traditional Fragmented Stack</h3>
+              <h3 className="text-sm font-semibold text-white">The Starrgu Infastrcutre Model</h3>
             </div>
             <div className="flex flex-col gap-3">
               {[
-                { title: '3rd-Party AI / LLM Vendor', desc: 'API dependencies, zero hardware control, potential data leakage.' },
-                { title: 'Public Cloud Hosting', desc: 'Shared hypervisors, unpredictable noisy neighbors, high egress costs.' },
-                { title: 'External Global CDN', desc: 'Non-optimized routing paths, high payload latencies, multi-vendor contract.' },
+                { title: 'AI INFASTRUCTURE LAYER', desc: 'Multi-Model Ai orchestration,Workflow automation engine , content inteligence , data architecture.' },
+                { title: 'DISTRIBUTION & MEDIA LAYER ', desc: 'Streaming and Broadcating platforms, Skill-Based interactive ecosystems , community engagement , Global digital presence.' },
+                { title: 'MONETIZATION & FINACIAL LAYERS', desc: 'Subscription models, AI usage Based monietization, Transaction processing systems, Bank-grade payment.' },
+                 { title: 'DATA, GOVERNANCE & IP LAYER', desc: 'Deterministic fairness engine, Data sovereignty, IP ownership and righhts management, Ai assisted morderation systems .' },
               ].map((item, i) => (
                 <React.Fragment key={i}>
                   <div className="bg-white/[0.015] border border-white/5 rounded-xl px-4 py-3">
                     <div className="text-xs font-semibold text-white/80">{item.title}</div>
                     <div className="text-[10px] text-white/40 mt-1">{item.desc}</div>
                   </div>
-                  {i < 2 && <div className="h-px border-t-2 border-dashed border-[#ef4444]/20 mx-4" />}
+                  {i < 3 && <div className="h-px border-t-2 border-dashed border-[#ef4444]/20 mx-4" />}
                 </React.Fragment>
               ))}
             </div>
@@ -186,7 +185,7 @@ export const TechnicalSection: React.FC = () => {
           </div>
 
           {/* Scale Metrics */}
-          <motion.div variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card text-center py-10 px-8 mb-8 relative overflow-hidden">
+          {/* <motion.div variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card text-center py-10 px-8 mb-8 relative overflow-hidden">
             <div className="card-glow" style={{ '--card-accent': '#27E2D8' } as React.CSSProperties} />
             <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tighter mb-2">{concurrency.toLocaleString()}</div>
             <div className="text-sm text-white/40 mb-8">concurrent user sessions sustained globally</div>
@@ -204,10 +203,10 @@ export const TechnicalSection: React.FC = () => {
                 <div className="text-[9px] text-white/40 mt-1 uppercase tracking-wider">Cascading Failures</div>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Modular SaaS Framework */}
-          <motion.div ref={svcRef} variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card p-8 mb-8">
+          {/* <motion.div ref={svcRef} variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card p-8 mb-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-9 h-9 rounded-xl bg-brand-aqua/10 border border-brand-aqua/20 flex items-center justify-center text-brand-aqua">
                 <Layers className="w-4 h-4" />
@@ -239,10 +238,10 @@ export const TechnicalSection: React.FC = () => {
                 </React.Fragment>
               ))}
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Governance & Compliance */}
-          <motion.div variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card p-8 relative overflow-hidden">
+          { <motion.div variants={cardAnim} initial="hidden" whileInView="visible" viewport={{ once: true }} className="glass-card p-8 relative overflow-hidden">
             <div className="card-glow" style={{ '--card-accent': '#F53A0F' } as React.CSSProperties} />
             <div className="flex items-center justify-between flex-wrap gap-4 mb-6">
               <div className="flex items-center gap-3">
@@ -273,7 +272,7 @@ export const TechnicalSection: React.FC = () => {
               <Lock className="w-3 h-3 text-brand-blue" />
               Data never crosses regional boundaries without explicit orchestration policies
             </div>
-          </motion.div>
+          </motion.div> }
         </div>
       )}
     </section>

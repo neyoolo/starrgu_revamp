@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, ExternalLink, MessageCircle } from 'lucide-react';
+import { Globe, MessageCircle, Send } from 'lucide-react';
 import { LOGO } from '../lib/assets';
 import type { LegalPage } from './LegalModal';
 
@@ -95,14 +95,32 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDrawer, onOpenLegal }) => 
           © 2026 Starrgu Ltd. All rights reserved.
         </p>
         <div className="flex gap-4">
-          <a href="https://linkedin.com/company/starrgu" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors duration-200" aria-label="LinkedIn">
-            <ExternalLink className="w-4 h-4" />
+          <a 
+            href="https://linkedin.com/company/starrgu" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-white/30 hover:text-white transition-colors duration-200" 
+            aria-label="LinkedIn"
+          >
+            <Globe className="w-4 h-4" />
           </a>
-          <a href="mailto:info@starrgu.com" className="text-white/30 hover:text-white transition-colors duration-200" aria-label="Email">
+          <a 
+            href="https://twitter.com/starrgu" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-white/30 hover:text-white transition-colors duration-200" 
+            aria-label="Twitter"
+          >
+            <Send className="w-4 h-4" />
+          </a>
+          <a 
+            href="https://facebook.com/starrgu" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-white/30 hover:text-white transition-colors duration-200" 
+            aria-label="Facebook"
+          >
             <MessageCircle className="w-4 h-4" />
-          </a>
-          <a href="https://github.com/starrgu" target="_blank" rel="noopener noreferrer" className="text-white/30 hover:text-white transition-colors duration-200" aria-label="GitHub">
-            <Code2 className="w-4 h-4" />
           </a>
         </div>
       </div>

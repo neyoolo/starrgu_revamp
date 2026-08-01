@@ -24,7 +24,7 @@
   letter-spacing: 0.01em;
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: 50px;
   margin: 1rem;
   z-index: 9999;
   max-width: calc(100vw - 2rem);
