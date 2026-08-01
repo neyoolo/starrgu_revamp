@@ -12,6 +12,7 @@ import { CTASection } from './components/CTASection';
 import { Footer } from './components/Footer';
 import { ContactDrawer } from './components/ContactDrawer';
 import { LegalModal, type LegalPage } from './components/LegalModal';
+import WhatsAppChatButton from './components/chatwithus.jsx';
 
 const App: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -124,6 +125,7 @@ const App: React.FC = () => {
 
       <ContactDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
       <LegalModal page={legalPage} onClose={() => setLegalPage(null)} />
+      <WhatsAppChatButton />
     </>
   );
 };
