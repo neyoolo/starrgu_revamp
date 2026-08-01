@@ -1,0 +1,747 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #05060A;
+  --color-void-elevated: rgba(10, 11, 18, 0.5);
+  --color-brand-blue: #0222F1;
+  --color-brand-aqua: #27E2D8;
+  --color-brand-orange: #F53A0F;
+  --color-brand-gold: #FCAE04;
+  --color-brand-frost: #F8FFFF;
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.1);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  --animate-status-pulse: statusPulse 2s ease-out infinite;
+}
+
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* — Design Tokens — */
+ :root {
+  /* Light theme (default) */
+  --void: #FBFBFD;
+  --void-elevated: #F1F3F7;
+  --glass-bg: rgba(5, 6, 10, 0.03);
+  --glass-border: rgba(15, 20, 30, 0.08);
+  --glass-border-hover: rgba(2, 34, 241, 0.08);
+  /* Use brand blue as the primary text color in light mode for a dark-blue appearance */
+  --brand-blue: #0222F1;
+  --text-primary: var(--brand-blue);
+  --text-secondary: rgba(2, 34, 241, 0.72);
+  --text-faint: rgba(2, 34, 241, 0.45);
+  --brand-aqua: #27E2D8;
+  --brand-orange: #F53A0F;
+  --brand-gold: #FCAE04;
+  --brand-frost: #0B1220;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+/* Dark theme override — apply by adding class "dark" to <html> or <body> */
+.dark {
+  --void: #05060A;
+  --void-elevated: #0C0D14;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(2, 34, 241, 0.35);
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-faint: rgba(255, 255, 255, 0.45);
+}
+
+/* — Reset & Base Styles — */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--void);
+}
+body {
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at 15% 5%, rgba(39, 226, 216, 0.08), transparent 30rem),
+    radial-gradient(circle at 86% 14%, rgba(252, 174, 4, 0.08), transparent 30rem),
+    radial-gradient(circle at 50% 50%, rgba(2, 34, 241, 0.05), transparent 45rem),
+    var(--void);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(2, 34, 241, 0.3);
+  color: #ffffff;
+}
+
+/* — Custom Scrollbar — */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* — Custom Cursor Halo Trail — */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--brand-aqua);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s var(--ease-out), height 0.2s var(--ease-out), background 0.2s, opacity 0.2s;
+  box-shadow: 0 0 10px rgba(39, 226, 216, 0.5);
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(39, 226, 216, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out), border-color 0.3s, opacity 0.3s;
+}
+.cursor-hover .cursor-dot {
+  width: 4px;
+  height: 4px;
+  opacity: 0.6;
+}
+.cursor-hover .cursor-ring {
+  width: 52px;
+  height: 52px;
+  border-color: var(--brand-blue);
+  background: rgba(2, 34, 241, 0.05);
+}
+.cursor-text .cursor-ring {
+  width: 4px;
+  height: 28px;
+  border-radius: 2px;
+  border-color: rgba(39, 226, 216, 0.6);
+}
+
+/* — Scroll Progress Bar — */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0;
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-aqua), var(--brand-orange), var(--brand-gold));
+  z-index: 999;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(2, 34, 241, 0.45);
+}
+
+/* — Background Layers & Noise — */
+.void-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0;
+  animation: orbDrift 20s ease-in-out infinite;
+}
+.ambient-orb:nth-child(1) {
+  width: 600px;
+  height: 600px;
+  top: -10%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(2, 34, 241, 0.1), transparent 70%);
+  animation-duration: 22s;
+}
+.ambient-orb:nth-child(2) {
+  width: 450px;
+  height: 450px;
+  top: 20%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(39, 226, 216, 0.08), transparent 70%);
+  animation-delay: -7s;
+  animation-duration: 26s;
+}
+.ambient-orb:nth-child(3) {
+  width: 500px;
+  height: 500px;
+  bottom: -12%;
+  left: 30%;
+  background: radial-gradient(circle, rgba(245, 58, 15, 0.05), transparent 70%);
+  animation-delay: -14s;
+  animation-duration: 24s;
+}
+.ambient-orb:nth-child(4) {
+  width: 350px;
+  height: 350px;
+  top: 55%;
+  left: 60%;
+  background: radial-gradient(circle, rgba(252, 174, 4, 0.04), transparent 70%);
+  animation-delay: -10s;
+  animation-duration: 28s;
+}
+
+@keyframes orbDrift {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    opacity: 0.75;
+    transform: translate(50px, -35px) scale(1.12);
+  }
+  50% {
+    opacity: 0.55;
+    transform: translate(-25px, 45px) scale(0.95);
+  }
+  75% {
+    opacity: 0.8;
+    transform: translate(35px, 15px) scale(1.08);
+  }
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 15%, rgba(0, 0, 0, 0.85), transparent);
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 15%, rgba(0, 0, 0, 0.85), transparent);
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+}
+
+/* — Section Dividers — */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin: 3.5rem auto;
+  max-width: 1200px;
+}
+
+/* — Conic Badge Glow — */
+.badge-glow {
+  position: relative;
+  padding: 1px;
+  border-radius: 9999px;
+  overflow: visible;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* toned-down rotating accent, smaller inset for less visual noise */
+.badge-glow::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  background: conic-gradient(from 0deg, var(--brand-blue), var(--brand-aqua), var(--brand-orange), var(--brand-gold), var(--brand-blue));
+  animation: rotate-border 6s linear infinite;
+  opacity: 0.85;
+  filter: blur(10px);
+  pointer-events: none;
+}
+/* inner background uses theme-aware glass token and border for contrast */
+.badge-glow::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 9999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  mix-blend-mode: normal;
+  pointer-events: none;
+}
+.badge-glow-inner {
+  position: relative;
+  z-index: 1;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.badge-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  color: var(--brand-aqua);
+  opacity: 0.95;
+  margin-right: 6px;
+}
+.badge-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+@keyframes rotate-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.scale-102 {
+  transform: scale(1.02);
+}
+
+.group:hover .group-hover\:scale-102 {
+  transform: scale(1.02);
+}
+
+/* — Card Tags — */
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid;
+  font-family: var(--font-mono);
+}
+.tag-blue {
+  color: var(--brand-blue);
+  background: rgba(2, 34, 241, 0.08);
+  border-color: rgba(2, 34, 241, 0.2);
+}
+.tag-orange {
+  color: var(--brand-orange);
+  background: rgba(245, 58, 15, 0.08);
+  border-color: rgba(245, 58, 15, 0.2);
+}
+.tag-aqua {
+  color: var(--brand-aqua);
+  background: rgba(39, 226, 216, 0.08);
+  border-color: rgba(39, 226, 216, 0.2);
+}
+.tag-gold {
+  color: var(--brand-gold);
+  background: rgba(252, 174, 4, 0.08);
+  border-color: rgba(252, 174, 4, 0.2);
+}
+
+/* — Hero Text Word Reveal — */
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px) rotateX(-15deg);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.hero-revealed .hero-word {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+.hero-gradient-wrap {
+  display: inline-block;
+}
+
+/* — Floating Navigation scrolled style — */
+.nav-pill-scrolled {
+  background: rgba(5, 6, 10, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* — Status Pulse Animation — */
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+/* — Shimmer & Glow Buttons — */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--brand-blue), #1a3df7);
+  border: none;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--brand-blue), var(--brand-aqua), var(--brand-orange));
+  filter: blur(24px);
+  opacity: 0.3;
+  z-index: -1;
+  transition: opacity 0.4s;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.18) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-out);
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(2, 34, 241, 0.45);
+}
+.btn-primary:hover::before {
+  opacity: 0.6;
+}
+.btn-primary:hover::after {
+  transform: translateX(120%);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out);
+  text-decoration: none;
+}
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* — Glassmorphic Card base structure — */
+.glass-card {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.2);
+  padding: 1.75rem;
+  overflow: hidden;
+  transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease-out), box-shadow 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(2, 34, 241, 0.15), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.glass-card:hover::before {
+  opacity: 1;
+}
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 55px -18px rgba(2, 34, 241, 0.3);
+}
+
+.glass-card .card-glow {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--card-accent, var(--brand-blue)), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 3 !important;
+}
+.glass-card:hover .card-glow {
+  opacity: 0.8;
+}
+
+/* — Microservice & Server Grid Elements — */
+.cursor-blink::after {
+  content: '\258A';
+  animation: blink 1s step-end infinite;
+  color: var(--brand-aqua);
+  margin-left: 2px;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.progress-fill {
+  transition: width 2.2s var(--ease-out);
+  box-shadow: 0 0 14px rgba(39, 226, 216, 0.5);
+}
+
+.sparkline-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset 2.5s var(--ease-out);
+}
+.sparkline-revealed .sparkline-path {
+  stroke-dashoffset: 0;
+}
+
+/* — Tab Styling — */
+.tab-btn {
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.tab-btn.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--brand-blue);
+}
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--brand-blue);
+  filter: blur(8px);
+  border-radius: 2px;
+}
+
+.pill-tab {
+  transition: all 0.3s var(--ease-out);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.pill-tab.active {
+  background: rgba(2, 34, 241, 0.25);
+  color: var(--text-primary);
+}
+
+/* — Marquee Ticker — */
+.marquee-track {
+  display: flex;
+  animation: marquee 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-item {
+  white-space: nowrap;
+  padding: 0 2rem;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.marquee-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  opacity: 0.4;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* — Drawer Modal Overlay & Panel — */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.drawer-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(12, 13, 20, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.45s var(--ease-out);
+}
+.drawer-overlay.open .drawer-panel {
+  transform: translateX(0);
+}
+
+.form-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+}
+.form-input:focus {
+  border-color: rgba(39, 226, 216, 0.5);
+  box-shadow: 0 0 0 3px rgba(39, 226, 216, 0.15);
+}
+.form-input::placeholder {
+  color: var(--text-faint);
+}
+.form-input option {
+  background: var(--void-elevated);
+  color: var(--text-primary);
+}
+
+/* — Reduced Motion — */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (pointer: coarse) {
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Theme-aware utility classes */
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-faint { color: var(--text-faint) !important; }
+.bg-glass { background: var(--glass-bg) !important; }
+.border-glass { border-color: var(--glass-border) !important; }
+.bg-void-elevated { background: var(--void-elevated) !important; }
+
+/* Ensure all standard text elements (including headings) use theme colors by default */
+h1, h2, h3, h4, h5, h6, p, li, label, span, a, button, input, textarea, select {
+  color: var(--text-primary) !important;
+}
+
+/* When the page is not in dark mode, override common Tailwind white classes so text becomes dark-blue */
+html:not(.dark) .text-white,
+html:not(.dark) .text-white\/70,
+html:not(.dark) .text-white\/45,
+html:not(.dark) .text-white\/30,
+html:not(.dark) .text-white\/60 {
+  color: var(--text-primary) !important;
+}
+
+/* Also override any direct uses of white backgrounds on small elements which may invert readability */
+html:not(.dark) .bg-black,
+html:not(.dark) .bg-black\/70 {
+  background-color: transparent !important;
+}
+
+/* — Gradient Text Utilities — */
+.text-gradient-blue-aqua {
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-aqua) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-orange-gold {
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
