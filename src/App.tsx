@@ -19,10 +19,6 @@ const App: React.FC = () => {
   const [legalPage, setLegalPage] = useState<LegalPage | null>(null);
 
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
-
-  useEffect(() => {
     const bar = document.getElementById('scrollProgress');
     const handleScroll = () => {
       if (!bar) return;

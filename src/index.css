@@ -256,6 +256,42 @@ body {
 }
 
 /* — Conic Badge Glow — */
+.hero-shell {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(245, 248, 255, 0.95));
+  border: 1px solid rgba(2, 34, 241, 0.12);
+  box-shadow: 0 30px 90px rgba(2, 34, 241, 0.08);
+}
+.dark .hero-shell {
+  background: linear-gradient(135deg, rgba(8, 12, 24, 0.92), rgba(12, 17, 31, 0.92));
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+}
+
+.hero-media-card {
+  background: linear-gradient(135deg, rgba(7, 17, 31, 0.96), rgba(10, 15, 28, 0.95));
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 70px rgba(2, 34, 241, 0.16);
+}
+
+.hero-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid rgba(2, 34, 241, 0.12);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+}
+
+.dark .hero-stat-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
 .badge-glow {
   position: relative;
   padding: 1px;
@@ -420,7 +456,7 @@ body {
   border-radius: 9999px;
   background: linear-gradient(135deg, var(--brand-blue), #1a3df7);
   border: none;
-  color: #fff;
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
   font-family: var(--font-sans);
@@ -466,9 +502,9 @@ body {
   gap: 0.5rem;
   padding: 0.85rem 1.75rem;
   border-radius: 9999px;
-  background: transparent;
-  border: 1px solid var(--glass-border);
-  color: var(--text-secondary);
+  background: linear-gradient(135deg, var(--brand-blue), #1a3df7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 500;
   font-family: var(--font-sans);
@@ -477,9 +513,33 @@ body {
   text-decoration: none;
 }
 .btn-ghost:hover {
-  color: var(--text-primary);
+  color: #ffffff;
   border-color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, #0b2fe8, #1f43ff);
+}
+
+html:not(.dark) .btn-primary,
+html:not(.dark) .btn-ghost,
+html:not(.dark) [role="dialog"][aria-label="Investor & Enterprise Inquiry Form"] .btn-primary,
+html:not(.dark) [role="dialog"][aria-label="Investor & Enterprise Inquiry Form"] .btn-ghost {
+  background: linear-gradient(135deg, var(--brand-blue), #1a3df7);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+html:not(.dark) .btn-primary,
+html:not(.dark) .btn-ghost,
+html:not(.dark) .hero .btn-primary,
+html:not(.dark) .hero .btn-ghost {
+  background: linear-gradient(135deg, var(--brand-blue), #1a3df7);
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+html:not(.dark) .btn-ghost:hover,
+html:not(.dark) .hero .btn-ghost:hover {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0b2fe8, #1f43ff);
 }
 
 /* — Glassmorphic Card base structure — */
@@ -672,7 +732,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 13px 16px;
-  color: var(--text-primary);
+  color: #ffffff;
   font-size: 14px;
   transition: all 0.3s ease;
   outline: none;
@@ -684,11 +744,31 @@ body {
   box-shadow: 0 0 0 3px rgba(39, 226, 216, 0.15);
 }
 .form-input::placeholder {
-  color: var(--text-faint);
+  color: rgba(255, 255, 255, 0.45);
 }
 .form-input option {
-  background: var(--void-elevated);
-  color: var(--text-primary);
+  background: #0c0d14;
+  color: #ffffff;
+}
+
+.form-input:focus {
+  border-color: rgba(39, 226, 216, 0.5);
+  box-shadow: 0 0 0 3px rgba(39, 226, 216, 0.15);
+}
+
+html:not(.dark) .form-input,
+html:not(.dark) .form-input option,
+html:not(.dark) .form-input:focus {
+  background: #0c0d14;
+  color: #ffffff;
+}
+
+[role="dialog"][aria-label="Investor & Enterprise Inquiry Form"] * {
+  color: #ffffff !important;
+}
+
+[role="dialog"][aria-label="Investor & Enterprise Inquiry Form"] .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
 /* — Reduced Motion — */
@@ -724,6 +804,18 @@ html:not(.dark) .text-white\/45,
 html:not(.dark) .text-white\/30,
 html:not(.dark) .text-white\/60 {
   color: var(--text-primary) !important;
+}
+
+html:not(.dark) .btn-primary,
+html:not(.dark) .btn-ghost,
+html:not(.dark) .btn-primary *,
+html:not(.dark) .btn-ghost * {
+  color: #ffffff !important;
+}
+
+html:not(.dark) .hero-media-card,
+html:not(.dark) .hero-media-card * {
+  color: #ffffff !important;
 }
 
 /* Also override any direct uses of white backgrounds on small elements which may invert readability */

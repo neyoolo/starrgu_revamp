@@ -24,9 +24,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDrawer }) => {
     try {
       const stored = localStorage.getItem('theme');
       if (stored) return stored === 'dark';
-      return true;
+      return false;
     } catch {
-      return true;
+      return false;
     }
   });
 
